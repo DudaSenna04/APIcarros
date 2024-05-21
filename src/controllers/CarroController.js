@@ -1,17 +1,16 @@
 const CarroService = require('../services/CarroServices');
 
 module.exports = {
-    buscarTodos: async (req, res) =>{
+    buscarUm: async (req, res) =>{
         let json = {error:'', result:{}};
 
-        let carros = await CarroService.buscarTodos();
+        let codigo = req.params.codigo;//para pegar o parametro na requisição
+        let carros = await CarroService.buscarUm(codigo);//retorna "um carro"
 
-        for(let i in carros){
-            json.result.push({
-                codigo: carros[i].codigo,
-                descricao: carros[i].modelo
-        });
-        }
+     if(carro){
+        json.result = carro;
+     }
+
         res.json(json);
     }
 
